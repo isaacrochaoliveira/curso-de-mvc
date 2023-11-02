@@ -10,13 +10,8 @@ define('URL', 'http://localhost/learn/curso-de-mvc/mvc');
 
 $obRouter = new Router(URL);
 
-//Rota Home
-$obRouter->get('/', [
-    function() {
-        return new Response(200, Home::getHome());
-    }
-]);
-
+//INCLUI AS ROTAS DE PÁGINAS
+include(__DIR__ . '/routes/pages.php');
 
 //Imprimi o Response da Rota
 $obRouter->run()->sendResponse();
