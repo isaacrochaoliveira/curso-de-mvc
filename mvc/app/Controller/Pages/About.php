@@ -8,10 +8,10 @@ use \App\Utils\View;
 
 class About extends Page{
     /**
-     * Responsável por retornar o conteúdo da nossa home (view)
+     * Responsável por retornar o conteúdo da nossa home (view) nossa áagina de sobre IsDev
      * @return string
      */
-    public static function getHome() {
+    public static function getAbout() {
         $objectOrganization = new Organization;
 
         // View Da Home
