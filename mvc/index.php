@@ -17,8 +17,8 @@ $obRouter->get('/', [
     }
 ]);
 
-// Imprimi o Response da Rota
-$obRouter->run()
-->sendResponse();
+
+//Imprimi o Response da Rota
+$obRouter->run()->sendResponse();
 
 ?>

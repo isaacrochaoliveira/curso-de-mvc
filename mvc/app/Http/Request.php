@@ -25,14 +25,14 @@ class Request {
     private $postVars = [];
     /**
      * Cabeçalho da Requisição
-     * @var string;
+     * @var array;
      */
     private $headers = [];
 
     public function __construct() {
         $this->queryParams = $_GET ?? [];
         $this->postVars = $_POST ?? [];
-        $this->headers = getallheaders() ?? [];
+        $this->headers = getallheaders();
         $this->httpMethod = $_SERVER["REQUEST_METHOD"] ?? "";
         $this->uri = $_SERVER["REQUEST_URI"] ?? "";
     }
@@ -46,7 +46,7 @@ class Request {
     }
 
     /**
-     * Método Responsável por retornar o método da requisição
+     * Método Responsável por retornar o URI da nossa requisição
      * @return string;
      */
     public function getUri() {

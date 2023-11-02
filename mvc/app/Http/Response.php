@@ -13,7 +13,7 @@ class Response {
      * Cabeçalho do Response
      * @var array
      */
-    private $header = [];
+    private $headers = [];
 
     /**
      * Tipo Conteúdo que está sendo retornado
@@ -45,7 +45,7 @@ class Response {
      */
     public function setContentType($contentType) {
         $this->contentType = $contentType;
-        $this->addHeader('ContentType', $contentType);
+        $this->addHeader('Content-Type', $contentType);
     }
 
     /**
@@ -54,7 +54,7 @@ class Response {
      * @param string
      */
     public function addHeader($key, $value) {
-        $this->header[$key] = $value;
+        $this->headers[$key] = $value;
     }
 
     /**
@@ -65,7 +65,7 @@ class Response {
         http_response_code($this->httpCode);
 
         //Enviar todos os Headers
-        foreach ($this->header as $key => $value) {
+        foreach ($this->headers as $key => $value) {
             header($key .': '. $value);
         }
     }
@@ -81,7 +81,7 @@ class Response {
         switch ($this->contentType) {
             case 'text/html':
                 echo $this->content;
-                exit();
+                exit(); 
         }
     }
 }

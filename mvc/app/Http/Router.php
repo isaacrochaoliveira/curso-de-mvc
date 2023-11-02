@@ -66,7 +66,7 @@ class Router
         //Validação dos parâmetros
         foreach ($params as $key => $value) {
             if ($value instanceof Closure) {
-                $param['controller'] = $value;
+                $params['controller'] = $value;
                 unset($params[$key]);
                 continue;
             }
@@ -74,9 +74,8 @@ class Router
 
         //Padrão de Validação da URL
         $patternRoute = '/^' . str_replace('/', '\/', $route) . '$/';
-
+        
         //ADD a rota dentro da classe
-
         $this->routes[$patternRoute][$method] = $params;
     }
 
@@ -90,16 +89,15 @@ class Router
             // Obtem a Rota atual
             $route = $this->getRoute();
 
-
-            // Verifica o Controlador 
-            if (!(isset($route['controller']))) {
+            // // Verifica o Controlador 
+            if (!isset($route['controller'])) {
                 throw new Exception('URL não pôde ser processada', 500);
             }
 
-            //Argumentos da função
+            // //Argumentos da função
             $args = [];
 
-            // Retorna execução da função
+            // // Retorna execução da função
             return call_user_func_array($route['controller'], $args);
         } catch (Exception $e) {
             return new Response($e->getCode(), $e->getMessage());
@@ -145,13 +143,12 @@ class Router
 
     /**
      * Método Responsável por Retornar a Uri desconsiderando o prefixo
-     * 
+     * @return string
      */
     private function getUri()
     {
         // URI da Request
         $uri = $this->request->getUri();
-
 
         //Fatia Uri com Prefixo
         $xUri = strlen($this->prefix) ? explode($this->prefix, $uri) : [$uri];
@@ -162,6 +159,7 @@ class Router
 
     /**
      * Método Responsável por retornar os dados da rota atual
+     * @return array
      *
      */
     private function getRoute()
@@ -177,12 +175,10 @@ class Router
             // Verifica Se a URI bate o o padrão
             if (preg_match($patternRoute, $uri)) {
                 // Verifica o método
-                if ($methods[$httpMethod]) {
+                if (@$methods[$httpMethod]) {
                     // Retorno das parâmetros da rota
                     return $methods[$httpMethod];
                 } 
-
-
                 // Método Não Permitido Definido
                 throw new Exception('Método Não Permitido!', 405);
             }
