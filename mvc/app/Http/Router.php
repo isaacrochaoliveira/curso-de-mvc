@@ -90,6 +90,7 @@ class Router
             // Obtem a Rota atual
             $route = $this->getRoute();
 
+
             // Verifica o Controlador 
             if (!(isset($route['controller']))) {
                 throw new Exception('URL não pôde ser processada', 500);
@@ -180,6 +181,7 @@ class Router
                     // Retorno das parâmetros da rota
                     return $methods[$httpMethod];
                 } 
+
 
                 // Método Não Permitido Definido
                 throw new Exception('Método Não Permitido!', 405);
