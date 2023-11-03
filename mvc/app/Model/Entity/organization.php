@@ -13,7 +13,7 @@ class Organization {
      * Nome da Organização
      * @var string
      */
-    public $name = "How are you doing?";
+    public $name = "How are you kpjsdfpo?";
 
     /**
      * Site da Organização
