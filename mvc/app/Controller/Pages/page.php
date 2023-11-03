@@ -21,6 +21,10 @@ class Page {
         return View::render("pages/footer");
     }
 
+    public static function getPagination($request, $obPagination) {
+        
+    }
+
     /**
      * Método Responsavel por retornar o conteúdo da nossa página genérica
      * @return string

@@ -3,6 +3,11 @@
 namespace App\Http;
 
 class Request {
+
+    /**
+     * Instância do Rputer
+     */
+    private $route;
     /**
      * Método HTTP da requisição
      * @var string
@@ -29,12 +34,34 @@ class Request {
      */
     private $headers = [];
 
-    public function __construct() {
+    public function __construct($router) {
+        $this->route = $router;
         $this->queryParams = $_GET ?? [];
         $this->postVars = $_POST ?? [];
         $this->headers = getallheaders();
         $this->httpMethod = $_SERVER["REQUEST_METHOD"] ?? "";
+        $this->setUri();
+    }
+
+    /**
+     * Método Responsável por definir a Uri 
+     */
+    private function setUri() {
+        // URI Completa com GETS
         $this->uri = $_SERVER["REQUEST_URI"] ?? "";
+
+        // REMOVE GETS DA URI
+        $xURI = explode("?", $this->uri);
+        $this->uri = $xURI[0];
+
+    }
+
+    /**
+     * Método Responsável por Retornar a instância de Router
+     * @return Router
+     */
+    public function getRoute() {
+        return $this->route;
     }
 
     /**
