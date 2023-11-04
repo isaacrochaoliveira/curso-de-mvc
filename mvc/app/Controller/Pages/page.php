@@ -57,14 +57,15 @@ class Page {
             // VIEW
             $links .= View::render("pages/pagination/link", [
                 "page" => $page['page'],
-                "link" => $link
+                "link" => $link,
+                'active' => $page['current'] ? 'active' : ''
             ]);
 
         }
 
         // Renderiza BOX de Paginação
         return View::render("pages/pagination/box", 
-        ["links" => $link]);
+        ["links" => $links]);
     }
 
     /**
