@@ -213,4 +213,11 @@ class Router
         // URL não encontrada
         throw new Exception('URL não encontrada', 404);
     }
+    /**
+     * Método Responsável por retornar a url atual
+     * @return string
+     */
+    public function getCurrentUrl() {
+        return $this->url.$this->getUri();
+    }
 }
