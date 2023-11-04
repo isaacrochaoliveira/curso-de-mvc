@@ -42,10 +42,11 @@ class Page {
         //Obter a URL atual do projeto sem GETS
         $url = $request->getRoute()->getCurrentUrl();
 
+        
         // GET
         $queryParams = $request->getQueryParams();
-
-        //Renderiza os LInks
+        
+        //Renderiza os links
         foreach ($pages as $page) {
             // Altera a página
             $queryParams['page'] = $page['page'];
@@ -54,8 +55,10 @@ class Page {
             $link = $url.'?'.http_build_query($queryParams);
 
             // VIEW
-            $link .= View::render("pages/pagination/link", 
-            ["page"=> $page['page'], "link" => $link]);
+            $links .= View::render("pages/pagination/link", [
+                "page" => $page['page'],
+                "link" => $link
+            ]);
 
         }
 
