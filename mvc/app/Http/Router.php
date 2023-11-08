@@ -74,10 +74,8 @@ class Router
             }
         }
 
-        $params['middleware'] = $params['middleware'] ?? [];
-
-        var_dump($params);
-        exit();
+        // MIDDLewares da rota
+        $params['middlewares'] = $params['middlewares'] ?? [];
 
         //Variáveis Da rota
         $params['variables'] = [];
@@ -123,9 +121,7 @@ class Router
             }
 
             // Retorna a execução da fila de widdleware
-            return (new MiddlewareQueue($route['middleware'], $route['controller'], $args))->next($this->request);
-
-            //  Retorna execução da função
+            return (new MiddlewareQueue($route['middlewares'], $route['controller'], $args))->next($this->request);
         } catch (Exception $e) {
             return new Response($e->getCode(), $e->getMessage());
         }

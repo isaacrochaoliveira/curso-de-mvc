@@ -11,12 +11,12 @@ class Maintenance {
      * Método Responsável por executar o middleware
      * @param Request
      * @param Closure
-     * @param Response
-     * @return
+     * @return Response
      */
     public function handle($request, \Closure $next) {
-        var_dump($request);
-        exit();
+        echo "<pre>";
+        print_r($request);
+        echo "</pre>";
     }
 
 }
