@@ -14,9 +14,13 @@ class Maintenance {
      * @return Response
      */
     public function handle($request, \Closure $next) {
-        echo "<pre>";
-        print_r($request);
-        echo "</pre>";
+        //Verifica o Estamo de Manutençãoi da Página
+        if (getenv("MAINTENANCE") == 'true') {
+            throw new \Exception('Página em Manutenção. Tente novamente mais tarde', 200);
+        }
+
+        // Executa a próximo nível do middlware
+        return $next($request);
     }
 
 }

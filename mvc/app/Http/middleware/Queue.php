@@ -8,6 +8,13 @@ use App\Http\Response;
 class Queue {
 
     /**
+     * Mapeamento de Middlware serão carregados em todas as rotas
+     * @var array
+     */
+    private static $default = [];
+
+
+    /**
      * Mapeamento de Middlewares
      * @var array
      */
@@ -38,7 +45,9 @@ class Queue {
      * @param array
      */
     public function __construct($middlewares, $controller, $controllerArgs) {
-        $this->middlewares = $middlewares;
+
+        $this->middlewares = array_merge(self::$default, $middlewares);
+
         $this->controller = $controller;
         $this->controllerArgs = $controllerArgs;
     }
@@ -49,6 +58,13 @@ class Queue {
      */
     public static function setMap($map) {
         self::$map = $map;
+    }
+
+    /**
+     * Método Responsável por definir o mapeamneot de middlwares padrões
+     */
+    public static function setDefault($default) {
+        self::$default = $default;
     }
     
     /** 
@@ -75,9 +91,8 @@ class Queue {
             return $queue->next($request);
         };
 
-        echo "<pre>";
-        print_r($next);
-        echo "</pre>";
-
+        //Executa o middleware
+        return (new self::$map[$middleware])->handle($request, $next);
+        
     }
 }
