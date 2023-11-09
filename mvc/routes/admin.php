@@ -12,6 +12,9 @@ $obRouter->get('/admin', [
 
 // Rota Login
 $obRouter->get('/admin/login', [
+    'middlewares' => [
+        'required-admin-logout'
+    ],
     function($request) {
         return new Response(200, Admin\Login::getLogin($request));
     }

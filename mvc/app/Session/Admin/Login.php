@@ -34,4 +34,15 @@ class Login {
         //Sucesso
         return true;
     }
+
+    /**
+     * Método Responsável por verificar se o usuario está logado
+     * @return boolean
+     */
+    public static function isLogged() {
+        self::init();
+
+        //Retornar a Verificação
+        return isset($_SESSION['admin']['usuario']['id']);
+    }
 }
