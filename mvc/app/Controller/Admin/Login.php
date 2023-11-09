@@ -64,4 +64,16 @@ class Login extends Page {
         //Redireciona o usuário para a HOME DO ADMIN
         $request->getRoute()->redirect('/admin');
     }
+
+    /**
+     * Método Responsável por deslogar o usuario
+     * @param Request
+     */
+    public static function getLogout($request) {
+        //Destroi a Session Está Ativada
+        SessionAdminLogin::logout();
+
+        // Redireciona para tela de login
+        $request->getRoute()->redirect('/admin/login');
+    }
 }

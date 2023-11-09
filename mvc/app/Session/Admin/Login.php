@@ -45,4 +45,17 @@ class Login {
         //Retornar a Verificação
         return isset($_SESSION['admin']['usuario']['id']);
     }
+
+    /**
+     * Método Responsável por executar o logout do usuario
+     * @return boolean
+     */
+    public static function logout() {
+        self::init();
+
+        // Desloga o usuario
+        unset($_SESSION['admin']['usuario']);
+
+        return true;
+    }
 }

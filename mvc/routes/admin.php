@@ -26,3 +26,10 @@ $obRouter->post('/admin/login', [
         return new Response(200, Admin\Login::setLogin($request));
     }
 ]);
+
+// Rota Login (LOGOUT)
+$obRouter->get('/admin/logout', [
+    function($request) {
+        return new Response(200, Admin\Login::getLogout($request));
+    }
+]);
