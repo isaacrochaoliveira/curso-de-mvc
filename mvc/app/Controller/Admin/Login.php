@@ -8,6 +8,8 @@ use App\Utils\View;
 use \App\Session\Admin\Login as SessionAdminLogin;
 
 class Login extends Page {
+
+    
     /**
      * Método Responsável por retornar a renderização da página de Login
      * @param Request
@@ -16,9 +18,7 @@ class Login extends Page {
      */
     public static function getLogin($request, $errorMenssage = null) {
         //STATUS
-        $status = !is_null($errorMenssage) ? View::render("admin/login/status", [
-            'mensagem' => $errorMenssage
-        ]) : '';
+        $status = !is_null($errorMenssage) ? Alert::getError($errorMenssage) : '';
 
         // O Conteúdo da página de Login
         $content = View::render('admin/login', [
