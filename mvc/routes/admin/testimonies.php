@@ -22,3 +22,12 @@ $obRouter->get('/admin/testimonies/new', [
         return new Response(200, Admin\Testimony::getNewTestimony($request));
     }
 ]);
+
+$obRouter->post('/admin/testimonies/new', [
+    'middlewares' => [
+        'required-admin-painel'
+    ],
+    function($request) {
+        return new Response(200, Admin\Testimony::setNewTestimony($request));
+    }
+]);

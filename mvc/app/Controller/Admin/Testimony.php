@@ -76,4 +76,14 @@ class Testimony extends Page {
         //Retorna a Página Completa
         return parent::getPanel('Cadastrar > IsDev', $content, 'testimonies');
     }
+
+    /**
+     * Métpdp Responsável por inserir comentários no banco de dados
+     * @param Request
+     * @return string
+     */
+    public static function setNewTestimony($request) {
+        //POST VARS
+        
+    }
 }
