@@ -12,3 +12,13 @@ $obRouter->get('/admin/testimonies', [
         return new Response(200, Admin\Testimony::getTestimonies($request));
     }
 ]);
+
+// Rota de Cadastro de um novo depoimento
+$obRouter->get('/admin/testimonies/new', [
+    'middlewares' => [
+        'required-admin-painel'
+    ],
+    function($request) {
+        return new Response(200, Admin\Testimony::getNewTestimony($request));
+    }
+]);

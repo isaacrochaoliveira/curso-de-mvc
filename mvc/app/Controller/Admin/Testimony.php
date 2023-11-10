@@ -54,11 +54,26 @@ class Testimony extends Page {
      */
     public static function getTestimonies($request) {
         $content = View::render('admin/modules/testimonies/index', [
-            'itens' => self::getTestimonyItems($request, $obPagination)
+            'itens' => self::getTestimonyItems($request, $obPagination),
+            'pagination' => parent::getPagination($request, $obPagination)
         ]);
 
         //Retorna a Página Completa
         return parent::getPanel('Depoimentos > IsDev', $content, 'testimonies');
     }
 
+    /**
+     * Método Responsável por retornar o formulário de cadastro de um novo depoimento
+     * @param Request
+     * @return string
+     */
+    public static function getNewTestimony($request) {
+        // Conteúdo do Formalário
+        $content = View::render('admin/modules/testimonies/form', [
+            'title' => 'Cadastro de Depoimentos'
+        ]);
+
+        //Retorna a Página Completa
+        return parent::getPanel('Cadastrar > IsDev', $content, 'testimonies');
+    }
 }

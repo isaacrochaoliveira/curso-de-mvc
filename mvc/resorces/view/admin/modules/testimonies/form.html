@@ -1,0 +1,24 @@
+<h1>{{title}}</h1>
+<hr>
+
+<a href="{{URL}}/admin/testimonies">
+    <button type="button" class="btn btn-warning">Voltar</button>
+</a>
+<hr>
+
+<section id="form" class="bg-white p-3 text-dark">
+    <h3>Envie seu depoimento</h3>
+    <form action="?page=1" method="post">
+        <div class="form-group">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descrição</label>
+            <textarea class="form-control" name="mensagem" id="mensagem" rows="5" required></textarea>
+        </div>
+        <div class="form-group mt-3">
+            <input type="submit" value="Enviar" class="btn btn-success">
+        </div>
+    </form>
+</section>
