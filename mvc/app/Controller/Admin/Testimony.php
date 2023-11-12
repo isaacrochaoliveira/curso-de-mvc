@@ -104,6 +104,9 @@ class Testimony extends Page {
      * @return string
      */
     public static function getEditTestimony($request, $id) {
+        //Obtem o depoimento do banco de dados
+        $obTestimony = EntityTestimony::getTestimoniesById($id);    
+
         $content = View::render('admin/modules/testimonies/form', [
             'title' => 'Editar Depoimento > IsDev'
         ]);
