@@ -84,6 +84,29 @@ class Testimony extends Page {
      */
     public static function setNewTestimony($request) {
         //POST VARS
+        $postVars = $request->getPostVars();
+
         
+        // Nova Instância
+        $obTestimony = new EntityTestimony;
+        $obTestimony->nome = $postVars['nome'] ?? '';
+        $obTestimony->mensagem = $postVars['mensagem'] ?? '';
+        $obTestimony->cadastrar();
+
+        //Redireciona o Usuário
+        $request->getRoute()->redirect('/admin/testimoies/'.$obTestimony->id.'/edit?status=created');
+    }
+
+    /**
+     * Método Responsável por retornar o formulário de edição de um depoimento
+     * @param Request $request
+     * @param integer $id
+     * @return string
+     */
+    public static function getEditTestimony($request, $id) {
+        $content = View::render('admin/modules/testimonies/form', [
+            'title' => 'Editar Depoimento > IsDev'
+        ]);
+        return parent::getPanel('Editar Depoimento > IsDev', $content, 'testimonies');
     }
 }

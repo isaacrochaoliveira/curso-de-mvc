@@ -31,3 +31,12 @@ $obRouter->post('/admin/testimonies/new', [
         return new Response(200, Admin\Testimony::setNewTestimony($request));
     }
 ]);
+
+$obRouter->get('/admin/testimoies/{id}/edit', [
+    'middlewares' => [
+        'required-admin-painel'
+    ],
+    function ($request, $id) {
+        return new Response(200, Admin\Testimony::getEditTestimony($request, $id));
+    }
+]);
