@@ -29,6 +29,16 @@ class Testimony
      */
     public $data;
 
+    /**
+     * Método Responsável por atualizar o bando de dados
+     * @return boolean
+     */
+    public function atualizar() {
+        return (new Database('depooimentos'))->update('id = ' . $this->id, [
+            'nome' => $this->nome,
+            'mensagem' => $this->mensagem
+        ]);
+    }
 
     /**
      * Método Responsável por cadastrar a instância atual no banco de dados

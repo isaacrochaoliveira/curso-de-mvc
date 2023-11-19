@@ -70,7 +70,9 @@ class Testimony extends Page {
     public static function getNewTestimony($request) {
         // Conteúdo do Formalário
         $content = View::render('admin/modules/testimonies/form', [
-            'title' => 'Cadastro de Depoimentos'
+            'title' => 'Cadastro de Depoimentos',
+            'nome' => '',
+            'mensagem' => ''
         ]);
 
         //Retorna a Página Completa
@@ -107,12 +109,38 @@ class Testimony extends Page {
         //Obtem o depoimento do banco de dados
         $obTestimony = EntityTestimony::getTestimoniesById($id);    
 
-        var_dump($obTestimony);
-        exit;
+        // Válida a Instância 
+        if (!($obTestimony instanceof EntityTestimony)) {
+            $request->getRoute()->redirect('/admin/testimonies');
+        }
 
         $content = View::render('admin/modules/testimonies/form', [
-            'title' => 'Editar Depoimento > IsDev'
+            'title' => 'Editar Depoimento > IsDev',
+            'nome' => $obTestimony->nome,
+            'mensagem' => $obTestimony->mensagem
         ]);
         return parent::getPanel('Editar Depoimento > IsDev', $content, 'testimonies');
+    }
+
+    /**
+     * Método Responsável por gravar atualização no BD
+     * @param Request $request
+     * @param integer $id
+     * @return string
+     */
+    public static function setEditTestimony($request, $id) {
+        $obTestimony = EntityTestimony::getTestimoniesById($id);
+
+        if (!($obTestimony instanceof EntityTestimony)) {
+            $request->getRoute()->redirect('/admin/testimonies');
+        }
+
+        $postVars = $request->getPostVars();
+        $obTestimony->nome = $postVars['nome'] ?? $obTestimony->nome;
+        $obTestimony->mensagem = $postVars['mensagem'] ?? $obTestimony->mensagem;
+
+        $obTestimony->atualizar();
+
+        $request->getRoute()->redirect('/admin/testimoies/'.$obTestimony->id.'/edit?status=updated');
     }
 }

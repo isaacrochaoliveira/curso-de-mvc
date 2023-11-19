@@ -11,11 +11,11 @@
     <form action="?page=1" method="post">
         <div class="form-group">
             <label for="nome">Nome</label>
-            <input type="text" name="nome" id="nome" class="form-control" required>
+            <input type="text" name="nome" id="nome" class="form-control" value="{{nome}}" required>
         </div>
         <div class="form-group">
             <label for="description">Mensagem</label>
-            <textarea name="mensagem" id="mensagem" cols="30" rows="5" required class="form-control"></textarea>
+            <textarea name="mensagem" id="mensagem" cols="30" rows="5" required class="form-control">{{mensagem}}</textarea>
         </div>
         <div class="form-group mt-3">
             <input type="submit" value="Enviar" class="btn btn-success">
