@@ -32,7 +32,7 @@ $obRouter->post('/admin/testimonies/new', [
     }
 ]);
 
-$obRouter->get('/admin/testimoies/{id}/edit', [
+$obRouter->get('/admin/testimonies/{id}/edit', [
     'middlewares' => [
         'required-admin-painel'
     ],
